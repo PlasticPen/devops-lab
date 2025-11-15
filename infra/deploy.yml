@@ -1,0 +1,33 @@
+- name: Deploy devops-lab stack to WSL2
+  hosts: app
+  become: true
+
+  tasks:
+    - name: Ensure target directory exists
+      file:
+        path: /opt/devops-lab
+        state: directory
+
+    - name: Copy docker-compose file
+      copy:
+        src: files/docker-compose.yml
+        dest: /opt/devops-lab/docker-compose.yml
+
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Ensure docker compose plugin is installed
+      apt:
+        name: docker-compose-plugin
+        state: present
+        update_cache: yes
+
+    - name: Run docker compose up
+      shell: |
+        cd /opt/devops-lab
+        docker compose up -d --pull always --build
+      args:
+        chdir: /opt/devops-lab
