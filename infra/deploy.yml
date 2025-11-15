@@ -13,6 +13,11 @@
         src: files/docker-compose.yml
         dest: /opt/devops-lab/docker-compose.yml
 
+    - name: Copy Prometheus config
+      copy:
+        src: files/prometheus.yml
+        dest: /opt/devops-lab/prometheus.yml
+
     - name: Copy app-service sources
       copy:
         src: ../app-service/
