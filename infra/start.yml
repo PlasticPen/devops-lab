@@ -1,0 +1,9 @@
+- name: Start devops-lab stack
+  hosts: app
+  become: true
+
+  tasks:
+    - name: Start services
+      shell: docker-compose up -d
+      args:
+        chdir: /opt/devops-lab

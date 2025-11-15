@@ -1,0 +1,9 @@
+- name: Stop devops-lab stack
+  hosts: app
+  become: true
+
+  tasks:
+    - name: Stop services
+      shell: docker-compose down
+      args:
+        chdir: /opt/devops-lab

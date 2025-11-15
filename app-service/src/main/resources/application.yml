@@ -12,3 +12,12 @@ spring:
       enabled: true
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus"   # включаем prometheus
+  metrics:
+    tags:
+      application: "app-service"            # тег для идентификации приложения
