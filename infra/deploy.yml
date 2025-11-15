@@ -31,11 +31,6 @@
         state: present
         update_cache: yes
 
-    - name: Pull images with docker-compose
-      shell: docker-compose pull
-      args:
-        chdir: /opt/devops-lab
-
     - name: Run docker-compose up
       shell: docker-compose up -d --build
       args:
