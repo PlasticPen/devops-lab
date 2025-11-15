@@ -18,6 +18,12 @@
         src: files/prometheus.yml
         dest: /opt/devops-lab/prometheus.yml
 
+    - name: Copy promtail config
+      copy:
+        src: files/promtail-config.yml
+        dest: /opt/devops-lab/promtail-config.yml
+
+
     - name: Copy app-service sources
       copy:
         src: ../app-service/
