@@ -13,6 +13,12 @@
         src: files/docker-compose.yml
         dest: /opt/devops-lab/docker-compose.yml
 
+    - name: Copy app-service sources
+      copy:
+        src: ../app-service/
+        dest: /opt/devops-lab/app-service
+        mode: preserve
+
     - name: Ensure Docker is installed
       apt:
         name: docker.io
@@ -25,7 +31,6 @@
         state: present
         update_cache: yes
 
-    # Не обязательно, но красиво: отдельно подтянуть образы
     - name: Pull images with docker-compose
       shell: docker-compose pull
       args:
