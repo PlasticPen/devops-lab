@@ -21,13 +21,13 @@
 
     - name: Ensure docker compose plugin is installed
       apt:
-        name: docker-compose-plugin
+        name: docker-compose
         state: present
         update_cache: yes
 
-    - name: Run docker compose up
+    - name: Run docker-compose up
       shell: |
         cd /opt/devops-lab
-        docker compose up -d --pull always --build
+        docker-compose up -d --pull always --build
       args:
         chdir: /opt/devops-lab
