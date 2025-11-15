@@ -19,15 +19,19 @@
         state: present
         update_cache: yes
 
-    - name: Ensure docker compose plugin is installed
+    - name: Ensure docker-compose is installed
       apt:
         name: docker-compose
         state: present
         update_cache: yes
 
+    # Не обязательно, но красиво: отдельно подтянуть образы
+    - name: Pull images with docker-compose
+      shell: docker-compose pull
+      args:
+        chdir: /opt/devops-lab
+
     - name: Run docker-compose up
-      shell: |
-        cd /opt/devops-lab
-        docker-compose up -d --pull always --build
+      shell: docker-compose up -d --build
       args:
         chdir: /opt/devops-lab
